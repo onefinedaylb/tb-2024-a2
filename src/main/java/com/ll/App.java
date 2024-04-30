@@ -67,8 +67,27 @@ class App {
         }
     }
     void actionRemove(String cmd){
-        String idStr = cmd.replace("삭제?id=", "");
-        int id = Integer.parseInt(idStr);
+        String[] cmdBits = cmd.split("\\?", 2);
+        String action = cmdBits[0];
+        String queryString = cmdBits[1];
+
+        String[] queryStringBits = queryString.split("&");
+        //queryStringBits[0] id=1
+        //queryStringBits[1] archive=true
+
+        int id = 0;
+        for(int i = 0; i < queryStringBits.length; i++){
+            String queryParamStr = queryStringBits[i];
+
+            String[] queryParamStrBits = queryParamStr.split("=", 2);
+
+            String paramName = queryParamStrBits[0];
+            String paramValue = queryParamStrBits[1];
+
+            if (paramName.equals("id")) {
+                id = Integer.parseInt(paramValue);
+            }
+        }
 
         System.out.printf("%d번 명언을 삭제합니다.\n", id);
     }
