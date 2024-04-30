@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 class App {
     void run() {
-        System.out.println("==프로그램 실행==");
         System.out.println("== 명언 앱 ==");
+
+        int lastQuotationId = 0;
 
         while(true){
             System.out.println("명령) ");
@@ -23,7 +24,9 @@ class App {
                 System.out.print("작가 : ");
                 String authorName = scanner.nextLine();
 
-                System.out.printf("1번 명언이 등록되었습니다.\n");
+                lastQuotationId++;
+
+                System.out.printf("%d번 명언이 등록되었습니다.\n", lastQuotationId);
             }
         }
     }
